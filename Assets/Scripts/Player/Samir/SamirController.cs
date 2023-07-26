@@ -42,6 +42,7 @@ public class SamirController : PlayerController
         Move();
     }
 
+    //-------------------------------------------------------------------------------
 
     /// <summary>
     /// Makes the player jump when OnJumpPressed event is fired

@@ -4,15 +4,35 @@ using UnityEngine;
 
 public class SetController : PlayerController
 {
-    // Start is called before the first frame update
-    void Start()
+    [Header("Floating Settings")]
+    [SerializeField, Tooltip("floating value")]
+    private float _floatingDistance;
+
+    [SerializeField, Tooltip("Floating Collider")]
+    private BoxCollider2D _floatingBoxCollider;
+
+    private void Start()
     {
-        
+        playerRigidBody = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        movementDirection = inputTracker.inputDirection;
+    }
+
+    private void FixedUpdate()
+    {
+        Move();
+        SetFloatingDistance();
+    }
+
+
+    /// <summary>
+    /// Draw a ray to the ground and elavate the character y position
+    /// </summary>
+    private void SetFloatingDistance()
+    {
+        _floatingBoxCollider.size = new Vector2(_floatingBoxCollider.size.x, _floatingDistance);
     }
 }
