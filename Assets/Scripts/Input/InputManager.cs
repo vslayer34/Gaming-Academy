@@ -22,6 +22,12 @@ public class InputManager : MonoBehaviour
     {
         playerActions.Player.Enable();
         playerActions.Player.Jump.performed += Jump_performed;
+        playerActions.Player.PrimaryAttack.performed += PrimaryAttack_performed;
+    }
+
+    private void PrimaryAttack_performed(InputAction.CallbackContext obj)
+    {
+        inputTracker.OnPrimaryAttackPressed?.Invoke();
     }
 
     private void Jump_performed(InputAction.CallbackContext obj)

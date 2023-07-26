@@ -278,7 +278,7 @@ GameObject:
   - component: {fileID: 2677652034069460803}
   - component: {fileID: 408689100276434371}
   - component: {fileID: 1115434934143292853}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Evil Mummy
   m_TagString: Untagged
   m_Icon: {fileID: 0}

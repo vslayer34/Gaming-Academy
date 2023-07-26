@@ -494,11 +494,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &710178733 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 7879022685900282371, guid: b43298b7a91557646a31f7b5a2e5c0d7, type: 3}
-  m_PrefabInstance: {fileID: 1187679368}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1078996818
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,10 +660,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3607616806515028740, guid: b43298b7a91557646a31f7b5a2e5c0d7, type: 3}
-      propertyPath: _floatingBoxCollider
-      value: 
-      objectReference: {fileID: 710178733}
     - target: {fileID: 4544589590780568411, guid: b43298b7a91557646a31f7b5a2e5c0d7, type: 3}
       propertyPath: m_Name
       value: Set
@@ -717,12 +708,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7879022685900282371, guid: b43298b7a91557646a31f7b5a2e5c0d7, type: 3}
-      propertyPath: m_Size.x
-      value: 0.2
+    - target: {fileID: 5287953585237613038, guid: b43298b7a91557646a31f7b5a2e5c0d7, type: 3}
+      propertyPath: _attackDistance
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7879022685900282371, guid: b43298b7a91557646a31f7b5a2e5c0d7, type: 3}
-      propertyPath: m_Size.y
+    - target: {fileID: 5287953585237613038, guid: b43298b7a91557646a31f7b5a2e5c0d7, type: 3}
+      propertyPath: _attackRadius.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287953585237613038, guid: b43298b7a91557646a31f7b5a2e5c0d7, type: 3}
+      propertyPath: _attackRadius.y
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
