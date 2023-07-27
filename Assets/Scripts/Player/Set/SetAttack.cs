@@ -12,5 +12,7 @@ public class SetAttack : PlayerAttack
     public override void Attack()
     {
         base.Attack();
+
+        // Add the animation
     }
 }

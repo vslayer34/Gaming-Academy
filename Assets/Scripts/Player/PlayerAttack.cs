@@ -21,12 +21,19 @@ public class PlayerAttack : MonoBehaviour, IAttack
     [SerializeField, Tooltip("Layer mask for attackable objects")]
     protected LayerMask _attackMask;
 
+    /// <summary>
+    /// fire a cast and check if it hit the enemy
+    /// and if so Reduce it damage
+    /// </summary>
     public virtual void Attack()
     {
         RaycastHit2D hit = Physics2D.CapsuleCast(transform.position, AttackRadius, CapsuleDirection2D.Horizontal, 0.0f, Vector2.left, AttackDistance, _attackMask);
-        if (hit.collider.TryGetComponent(out IDamagable damagable))
+        
+        if (hit.collider != null)
         {
+            hit.collider.TryGetComponent(out IDamagable damagable);
             Debug.Log($"Attacked {hit.collider.name} for {Damage} damage.");
+            damagable.TakeDamage(Damage);
         }
         else
         {

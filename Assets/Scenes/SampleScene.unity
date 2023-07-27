@@ -709,16 +709,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5287953585237613038, guid: b43298b7a91557646a31f7b5a2e5c0d7, type: 3}
-      propertyPath: _attackDistance
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5287953585237613038, guid: b43298b7a91557646a31f7b5a2e5c0d7, type: 3}
-      propertyPath: _attackRadius.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5287953585237613038, guid: b43298b7a91557646a31f7b5a2e5c0d7, type: 3}
-      propertyPath: _attackRadius.y
-      value: 1
+      propertyPath: _attackMask.m_Bits
+      value: 128
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
