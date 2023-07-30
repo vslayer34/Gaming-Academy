@@ -5,6 +5,8 @@ using UnityEngine;
 public class SO_InputTracker : ScriptableObject
 {
     public float inputDirection;
+    public Vector2 mousePosition;
+
     public Action OnJumpPressed;
     public Action OnPrimaryAttackPressed;
 }

@@ -5,6 +5,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField, Tooltip("where to get the input")]
     protected SO_InputTracker inputTracker;
 
+    [SerializeField, Tooltip("Referance to the character sprite")]
+    protected SpriteRenderer sprite;
+
     protected float movementDirection;
     protected Rigidbody2D playerRigidBody;
 
@@ -21,7 +24,18 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     protected void Move()
     {
+        // flip the sprite
+        switch (movementDirection)
+        {
+            case 1:
+                sprite.flipX = false;
+                break;
+            case -1:
+                sprite.flipX = true;
+                break;
+        }
         playerRigidBody.position += new Vector2(movementDirection * Time.fixedDeltaTime * speed, 0.0f);
+        
     }
 
 }

@@ -11,8 +11,6 @@ public class MummisHealth : MonoBehaviour, IDamagable
    
     private float _currentHealth;
 
-    public float CurrentHealth { get => _currentHealth; }
-
 
 
     //----------------------------------------------------------------------
@@ -20,8 +18,8 @@ public class MummisHealth : MonoBehaviour, IDamagable
     private void Start()
     {
         // set the current health to the max health at the start of the game
-        _currentHealth = _maxHealth;
-        OnHealthRechedZero += Die;
+        CurrentHealth = _maxHealth;
+        OnHealthRechedZero = Die;
     }
 
     //----------------------------------------------------------------------
@@ -37,7 +35,7 @@ public class MummisHealth : MonoBehaviour, IDamagable
             OnHealthRechedZero?.Invoke();
         }
 
-        _currentHealth -= damageAmount;
+        CurrentHealth -= damageAmount;
         Debug.Log($"The mummie took {damageAmount} damage points and its current health is: {CurrentHealth}");
     }
 
@@ -47,5 +45,31 @@ public class MummisHealth : MonoBehaviour, IDamagable
     public void Die()
     {
         Debug.Log($"my current health reached {CurrentHealth}, now I'm Dead you monster ");
+    }
+
+    //----------------------------------------------------------------------------
+
+    public float CurrentHealth
+    {
+        get => _currentHealth;
+        set
+        {
+            if (_currentHealth < 0)
+            {
+                _currentHealth = 0;
+            }
+            else if (value > _maxHealth)
+            {
+                _currentHealth = _maxHealth;
+            }
+            else if (value < 0)
+            {
+                _currentHealth = 0;
+            }
+            else
+            {
+                _currentHealth = value;
+            }
+        }
     }
 }

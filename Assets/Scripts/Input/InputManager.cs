@@ -10,7 +10,14 @@ public class InputManager : MonoBehaviour
 
     private PlayerInputActions playerActions;
 
+    /// <summary>
+    /// Movement Direction
+    /// </summary>
     public float InputDirection {  get; private set; }
+    /// <summary>
+    /// Mouse Position in the screen
+    /// </summary>
+    public Vector2 MousePosition { get; private set; }
 
     private void Awake()
     {
@@ -39,5 +46,8 @@ public class InputManager : MonoBehaviour
     {
         InputDirection = playerActions.Player.Movement.ReadValue<float>();
         inputTracker.inputDirection = InputDirection;
+
+        MousePosition = playerActions.Player.Look.ReadValue<Vector2>();
+        inputTracker.mousePosition = MousePosition;
     }
 }
