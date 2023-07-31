@@ -28,14 +28,22 @@ public class PlayerController : MonoBehaviour
         switch (movementDirection)
         {
             case 1:
-                sprite.flipX = false;
+                FlipTheSprite();
                 break;
             case -1:
-                sprite.flipX = true;
+                FlipTheSprite(true);
                 break;
         }
         playerRigidBody.position += new Vector2(movementDirection * Time.fixedDeltaTime * speed, 0.0f);
         
     }
 
+    /// <summary>
+    /// Flip the player sprite
+    /// </summary>
+    /// <param name="direction">default is false, true to flip</param>
+    public void FlipTheSprite(bool direction = false)
+    {
+        sprite.flipX = direction;
+    }
 }

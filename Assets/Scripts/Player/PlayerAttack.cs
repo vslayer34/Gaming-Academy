@@ -21,13 +21,33 @@ public class PlayerAttack : MonoBehaviour, IAttack
     [SerializeField, Tooltip("Layer mask for attackable objects")]
     protected LayerMask _attackMask;
 
+    // referance to the player controller
+    protected PlayerController _playerController;
+
+
+    private void Start()
+    {
+        _playerController = GetComponent<SetController>();
+    }
+
     /// <summary>
     /// fire a cast and check if it hit the enemy
     /// and if so Reduce it damage
     /// </summary>
     public virtual void Attack()
     {
-        RaycastHit2D hit = Physics2D.CapsuleCast(transform.position, AttackRadius, CapsuleDirection2D.Horizontal, 0.0f, Vector2.left, AttackDistance, _attackMask);
+        // calculate the attack direction in relation to the mouse position
+        Vector2 attackDirection = _inputTracker.mouseWorldPosition - transform.position;
+        Debug.Log(attackDirection.normalized);
+
+        // flip the sprite to the cursor direction when the player is attacking
+        //_playerController.FlipTheSprite((attackDirection.y < 0) ? true : false);
+        
+        // play the animation
+        // play the sound
+
+        RaycastHit2D hit = Physics2D.CapsuleCast(transform.position, AttackRadius, CapsuleDirection2D.Horizontal, 0.0f, 
+            attackDirection.normalized, AttackDistance, _attackMask);
         
         if (hit.collider != null)
         {

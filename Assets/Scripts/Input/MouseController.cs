@@ -5,9 +5,6 @@ public class MouseController : MonoBehaviour
     [SerializeField, Tooltip("Referance to the input tracker SO")]
     private SO_InputTracker inputTracker;
 
-    [SerializeField, Tooltip("The crosshair gameobject")]
-    private Transform _crosshairGameObject;
-
     private Camera _mainCamera;
 
     private void Start()
@@ -18,8 +15,8 @@ public class MouseController : MonoBehaviour
     private void Update()
     {
         MouseWorldPosition = GetMouseWorldPosition();
-        Debug.Log(MouseWorldPosition);
         FollowMousePosition();
+        inputTracker.mouseWorldPosition = MouseWorldPosition;
     }
 
 
@@ -29,8 +26,7 @@ public class MouseController : MonoBehaviour
     /// <returns>Vector3 of the mouse world position</returns>
     private Vector2 GetMouseWorldPosition()
     {
-        Vector3 mouseWorldPosition = Vector3.zero;
-        mouseWorldPosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 mouseWorldPosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
 
         return new Vector2(mouseWorldPosition.x, mouseWorldPosition.y);
     }
@@ -40,7 +36,7 @@ public class MouseController : MonoBehaviour
     /// </summary>
     private void FollowMousePosition()
     {
-        _crosshairGameObject.position = Vector3.up;
+        transform.position = MouseWorldPosition;
     }
 
     //----------------------------------------------------------------------------
