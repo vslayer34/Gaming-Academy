@@ -8,6 +8,9 @@ public class MouseController : MonoBehaviour
 
     private Camera _mainCamera;
 
+    // reference to the currently clicked emeny
+    private IClickable currentlyClicked;
+
     private void Start()
     {
         _mainCamera = Camera.main;
@@ -48,10 +51,18 @@ public class MouseController : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(MouseWorldPosition, Vector3.zero);
         if (hit.collider != null)
         {
-            
+            if (hit.collider.TryGetComponent(out IClickable clickable))
+            {
+                currentlyClicked = clickable;
+                currentlyClicked.MarkMe();
+            }
         }
-
-        Debug.Log("Right Click");
+        else
+        {
+            Debug.Log("Right Click");
+            currentlyClicked?.DeMarkMe();
+            currentlyClicked = null;
+        }
     }
 
 
