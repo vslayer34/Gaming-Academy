@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MouseController : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class MouseController : MonoBehaviour
     private void Start()
     {
         _mainCamera = Camera.main;
+        Cursor.visible = false;
+        inputTracker.OnRightMouseClick += MarkTheEnemy;
     }
 
     private void Update()
@@ -38,6 +41,19 @@ public class MouseController : MonoBehaviour
     {
         transform.position = MouseWorldPosition;
     }
+
+
+    private void MarkTheEnemy()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(MouseWorldPosition, Vector3.zero);
+        if (hit.collider != null)
+        {
+            
+        }
+
+        Debug.Log("Right Click");
+    }
+
 
     //----------------------------------------------------------------------------
 

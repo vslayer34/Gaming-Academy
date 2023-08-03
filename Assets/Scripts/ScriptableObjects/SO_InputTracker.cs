@@ -10,4 +10,5 @@ public class SO_InputTracker : ScriptableObject
 
     public Action OnJumpPressed;
     public Action OnPrimaryAttackPressed;
+    public Action OnRightMouseClick;
 }

@@ -6,7 +6,7 @@ public class SetAttack : PlayerAttack
 {
     private void Start()
     {
-        _inputTracker.OnPrimaryAttackPressed = Attack;
+        _inputTracker.OnPrimaryAttackPressed += Attack;
         _playerController = GetComponent<PlayerController>();
     }
 
