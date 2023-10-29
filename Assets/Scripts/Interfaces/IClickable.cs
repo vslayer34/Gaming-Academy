@@ -4,8 +4,8 @@ using UnityEngine;
 
 public interface IClickable
 {
-    public bool IsMarked { get; set; }
+    bool IsMarked { get; set; }
 
-    public void MarkMe();
-    public void DeMarkMe();
+    void MarkMe();
+    void DeMarkMe();
 }

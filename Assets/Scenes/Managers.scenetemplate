@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 13966, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: Managers
+  m_EditorClassIdentifier: 
+  templateScene: {fileID: 102900000, guid: d15bd7f92b8068ca8baf7976d3af9f25, type: 3}
+  templateName: Static Managers
+  description: Contains all the managers across the differents scenes
+  preview: {fileID: 0}
+  dependencies:
+  - dependency: {fileID: 11400000, guid: 01bf8641c176ae2498c5c8394dcf85c3, type: 2}
+    instantiationMode: 1
+  templatePipeline: {fileID: 0}
+  badge: {fileID: 0}
+  addToDefaults: 0
