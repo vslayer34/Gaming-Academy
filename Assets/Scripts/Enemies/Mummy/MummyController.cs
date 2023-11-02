@@ -18,6 +18,7 @@ public class MummyController : Enemy
         headingDirection = isLookingRight ? headingRight : headingLeft;
         Move(headingDirection);
     }
+    
 
     //----------------------------------------------------------------------------------------------------
 

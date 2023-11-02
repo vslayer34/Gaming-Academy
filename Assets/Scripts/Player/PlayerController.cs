@@ -28,10 +28,10 @@ public class PlayerController : MonoBehaviour
         switch (movementDirection)
         {
             case 1:
-                FlipTheSprite();
+                // FlipTheSprite();
                 break;
             case -1:
-                FlipTheSprite(true);
+                // FlipTheSprite(true);
                 break;
         }
         playerRigidBody.position += new Vector2(movementDirection * Time.fixedDeltaTime * speed, 0.0f);
