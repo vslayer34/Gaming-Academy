@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IClickable
 {
     protected Rigidbody2D enemyRB;
 
@@ -56,4 +56,20 @@ public class Enemy : MonoBehaviour
     {
         bodyGameobject.eulerAngles = new (xRotation, 0.0f, zRotation);
     }
+
+    //----------------------------------------------------------------------------------------------------
+
+    public bool IsMarked { get; set; }
+
+    public virtual void MarkMe()
+    {
+        Debug.Log("I'm currently marked");
+    }
+
+    public virtual void DeMarkMe()
+    {
+        Debug.Log("I'm now free from your marking");
+    }
+
+    //-------------------------------------------------------------------------------------------------
 }

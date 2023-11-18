@@ -6,9 +6,15 @@ public class MouseController : MonoBehaviour
     [SerializeField, Tooltip("Referance to the input tracker SO")]
     private SO_InputTracker inputTracker;
 
+    
+    /// <summary>
+    /// referance for the main camera
+    /// </summary>
     private Camera _mainCamera;
 
-    // reference to the currently clicked emeny
+    /// <summary>
+    /// reference to the currently clicked enemey
+    /// </summary>
     private IClickable currentlyClicked;
 
     private void Start()
@@ -46,6 +52,10 @@ public class MouseController : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// See if the the mouse clicked on an enemy and mark it
+    /// if not clear previous marking
+    /// </summary>
     private void MarkTheEnemy()
     {
         RaycastHit2D hit = Physics2D.Raycast(MouseWorldPosition, Vector3.zero);

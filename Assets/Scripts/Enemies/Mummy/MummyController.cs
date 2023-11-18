@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MummyController : Enemy, IClickable
+public class MummyController : Enemy
 {
     private float headingDirection;
     private float headingRight = 1;
@@ -18,20 +18,22 @@ public class MummyController : Enemy, IClickable
         headingDirection = isLookingRight ? headingRight : headingLeft;
         Move(headingDirection);
     }
+    
 
     //----------------------------------------------------------------------------------------------------
 
-    public void MarkMe()
+    public override void MarkMe()
     {
-        Debug.Log("I'm currently marked");
+        base.MarkMe();
+        Debug.Log("overr");
     }
 
-    public void DeMarkMe()
-    {
-        Debug.Log("I'm now free from your marking");
-    }
+    // public void DeMarkMe()
+    // {
+    //     Debug.Log("I'm now free from your marking");
+    // }
 
     //-------------------------------------------------------------------------------------------------
 
-    public bool IsMarked { get; set; }
+    // public bool IsMarked { get; set; }
 }
