@@ -71,6 +71,24 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NextCharacter"",
+                    ""type"": ""Button"",
+                    ""id"": ""57c83318-180a-41d8-9572-6358e959efa6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PreviouseCharacter"",
+                    ""type"": ""Button"",
+                    ""id"": ""2a0c3a7c-4fda-4bf4-9f2d-5e3a2704488f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -183,6 +201,28 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Mark"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""73cb4644-0752-4a5a-a915-3067b4b269f6"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextCharacter"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fabc84c3-3185-46b5-9251-0cff24171508"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PreviouseCharacter"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -213,6 +253,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_PrimaryAttack = m_Player.FindAction("PrimaryAttack", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Mark = m_Player.FindAction("Mark", throwIfNotFound: true);
+        m_Player_NextCharacter = m_Player.FindAction("NextCharacter", throwIfNotFound: true);
+        m_Player_PreviouseCharacter = m_Player.FindAction("PreviouseCharacter", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -279,6 +321,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_PrimaryAttack;
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Mark;
+    private readonly InputAction m_Player_NextCharacter;
+    private readonly InputAction m_Player_PreviouseCharacter;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -288,6 +332,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @PrimaryAttack => m_Wrapper.m_Player_PrimaryAttack;
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Mark => m_Wrapper.m_Player_Mark;
+        public InputAction @NextCharacter => m_Wrapper.m_Player_NextCharacter;
+        public InputAction @PreviouseCharacter => m_Wrapper.m_Player_PreviouseCharacter;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -312,6 +358,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Mark.started += instance.OnMark;
             @Mark.performed += instance.OnMark;
             @Mark.canceled += instance.OnMark;
+            @NextCharacter.started += instance.OnNextCharacter;
+            @NextCharacter.performed += instance.OnNextCharacter;
+            @NextCharacter.canceled += instance.OnNextCharacter;
+            @PreviouseCharacter.started += instance.OnPreviouseCharacter;
+            @PreviouseCharacter.performed += instance.OnPreviouseCharacter;
+            @PreviouseCharacter.canceled += instance.OnPreviouseCharacter;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -331,6 +383,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Mark.started -= instance.OnMark;
             @Mark.performed -= instance.OnMark;
             @Mark.canceled -= instance.OnMark;
+            @NextCharacter.started -= instance.OnNextCharacter;
+            @NextCharacter.performed -= instance.OnNextCharacter;
+            @NextCharacter.canceled -= instance.OnNextCharacter;
+            @PreviouseCharacter.started -= instance.OnPreviouseCharacter;
+            @PreviouseCharacter.performed -= instance.OnPreviouseCharacter;
+            @PreviouseCharacter.canceled -= instance.OnPreviouseCharacter;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -364,5 +422,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnPrimaryAttack(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnMark(InputAction.CallbackContext context);
+        void OnNextCharacter(InputAction.CallbackContext context);
+        void OnPreviouseCharacter(InputAction.CallbackContext context);
     }
 }

@@ -31,6 +31,17 @@ public class InputManager : MonoBehaviour
         playerActions.Player.Jump.performed += Jump_performed;
         playerActions.Player.PrimaryAttack.performed += PrimaryAttack_performed;
         playerActions.Player.Mark.performed += Mark_performed;
+        playerActions.Player.NextCharacter.performed += NextCharacter_performed;
+        playerActions.Player.PreviouseCharacter.performed += PreviouseCharacter_performed;
+    }
+
+    private void OnDisable()
+    {
+        playerActions.Player.Jump.performed -= Jump_performed;
+        playerActions.Player.PrimaryAttack.performed -= PrimaryAttack_performed;
+        playerActions.Player.Mark.performed -= Mark_performed;
+        playerActions.Player.NextCharacter.performed -= NextCharacter_performed;
+        playerActions.Player.PreviouseCharacter.performed -= PreviouseCharacter_performed;
     }
 
     private void Mark_performed(InputAction.CallbackContext obj)
@@ -46,6 +57,16 @@ public class InputManager : MonoBehaviour
     private void Jump_performed(InputAction.CallbackContext obj)
     {
         inputTracker.OnJumpPressed?.Invoke();
+    }
+
+    private void NextCharacter_performed(InputAction.CallbackContext obj)
+    {
+        inputTracker.OnNextCharacterPressed?.Invoke();
+    }
+
+    private void PreviouseCharacter_performed(InputAction.CallbackContext obj)
+    {
+        inputTracker.OnPreviousCharacterPressed?.Invoke();
     }
 
     private void Update()
