@@ -35,4 +35,10 @@ public class SetController : PlayerController
     {
         _floatingBoxCollider.size = new Vector2(_floatingBoxCollider.size.x, _floatingDistance);
     }
+
+    /// <summary>
+    /// gets the size of the floating collider
+    /// </summary>
+    /// <value></value>
+    public float FloatingBoxColliderSize { get => _floatingBoxCollider.size.x; }
 }

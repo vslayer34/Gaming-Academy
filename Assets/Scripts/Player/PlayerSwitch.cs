@@ -95,8 +95,20 @@ public class PlayerSwitch : MonoBehaviour
     private void SwapCharacters(int currentSelection, int nextSelection)
     {
         transform.GetChild(currentSelection).gameObject.SetActive(false);
+
+        Vector3 newPosition = transform.GetChild(currentSelection).position;
         
-        transform.GetChild(nextSelection).position = transform.GetChild(currentSelection).position;
+        // 0 index of Samir
+        if (nextSelection == 0)
+        {
+            transform.GetChild(nextSelection).position = newPosition;
+        }
+        else
+        {
+            // set correction according to the y position to accomedate for the floating collider
+            _characters[nextSelection].TryGetComponent(out SetController controller);
+            transform.GetChild(nextSelection).position = new Vector3(newPosition.x, newPosition.y + controller.FloatingBoxColliderSize, 0.0f);
+        }
         transform.GetChild(nextSelection).gameObject.SetActive(true);
     }
 }
