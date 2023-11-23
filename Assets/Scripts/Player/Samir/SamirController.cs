@@ -51,10 +51,8 @@ public class SamirController : PlayerController
     {
         if (currentJumpCounter < maxJumpCounter)
         {
-            Debug.Log("Before: " + currentJumpCounter);
             playerRigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             currentJumpCounter++;
         }
-        Debug.Log("After: " + currentJumpCounter);
     }
 }
