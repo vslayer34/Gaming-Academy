@@ -89,6 +89,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RadialWheel"",
+                    ""type"": ""Button"",
+                    ""id"": ""15752489-4e6c-4f59-a832-38668bc682e4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -223,6 +232,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""PreviouseCharacter"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""20c55e82-256b-47cc-879e-2db2d0645dfb"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RadialWheel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -255,6 +275,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_Mark = m_Player.FindAction("Mark", throwIfNotFound: true);
         m_Player_NextCharacter = m_Player.FindAction("NextCharacter", throwIfNotFound: true);
         m_Player_PreviouseCharacter = m_Player.FindAction("PreviouseCharacter", throwIfNotFound: true);
+        m_Player_RadialWheel = m_Player.FindAction("RadialWheel", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -323,6 +344,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Mark;
     private readonly InputAction m_Player_NextCharacter;
     private readonly InputAction m_Player_PreviouseCharacter;
+    private readonly InputAction m_Player_RadialWheel;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -334,6 +356,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Mark => m_Wrapper.m_Player_Mark;
         public InputAction @NextCharacter => m_Wrapper.m_Player_NextCharacter;
         public InputAction @PreviouseCharacter => m_Wrapper.m_Player_PreviouseCharacter;
+        public InputAction @RadialWheel => m_Wrapper.m_Player_RadialWheel;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -364,6 +387,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @PreviouseCharacter.started += instance.OnPreviouseCharacter;
             @PreviouseCharacter.performed += instance.OnPreviouseCharacter;
             @PreviouseCharacter.canceled += instance.OnPreviouseCharacter;
+            @RadialWheel.started += instance.OnRadialWheel;
+            @RadialWheel.performed += instance.OnRadialWheel;
+            @RadialWheel.canceled += instance.OnRadialWheel;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -389,6 +415,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @PreviouseCharacter.started -= instance.OnPreviouseCharacter;
             @PreviouseCharacter.performed -= instance.OnPreviouseCharacter;
             @PreviouseCharacter.canceled -= instance.OnPreviouseCharacter;
+            @RadialWheel.started -= instance.OnRadialWheel;
+            @RadialWheel.performed -= instance.OnRadialWheel;
+            @RadialWheel.canceled -= instance.OnRadialWheel;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -424,5 +453,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnMark(InputAction.CallbackContext context);
         void OnNextCharacter(InputAction.CallbackContext context);
         void OnPreviouseCharacter(InputAction.CallbackContext context);
+        void OnRadialWheel(InputAction.CallbackContext context);
     }
 }

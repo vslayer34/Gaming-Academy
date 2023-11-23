@@ -17,4 +17,8 @@ public class SO_InputTracker : ScriptableObject
 
     public Action OnNextCharacterPressed;
     public Action OnPreviousCharacterPressed;
+
+    // Radial Wheel
+    public Action OnRadialWheelPressed;
+    public Action OnRadialWheelCanceled;
 }

@@ -28,20 +28,35 @@ public class InputManager : MonoBehaviour
     private void Start()
     {
         playerActions.Player.Enable();
+
+        // Jump and primary control actions except movement actions
         playerActions.Player.Jump.performed += Jump_performed;
         playerActions.Player.PrimaryAttack.performed += PrimaryAttack_performed;
         playerActions.Player.Mark.performed += Mark_performed;
+
+        // switch character through buttons actions
         playerActions.Player.NextCharacter.performed += NextCharacter_performed;
         playerActions.Player.PreviouseCharacter.performed += PreviouseCharacter_performed;
+
+        // Radial Wheel Actions
+        playerActions.Player.RadialWheel.performed += RadialWheel_performed;
+        playerActions.Player.RadialWheel.canceled += RadialWheel_canceled;
     }
 
     private void OnDisable()
     {
+        // Jump and primary control actions except movement actions
         playerActions.Player.Jump.performed -= Jump_performed;
         playerActions.Player.PrimaryAttack.performed -= PrimaryAttack_performed;
         playerActions.Player.Mark.performed -= Mark_performed;
+
+        // switch character through buttons actions
         playerActions.Player.NextCharacter.performed -= NextCharacter_performed;
         playerActions.Player.PreviouseCharacter.performed -= PreviouseCharacter_performed;
+
+        // Radial Wheel Actions
+        playerActions.Player.RadialWheel.performed -= RadialWheel_performed;
+        playerActions.Player.RadialWheel.canceled -= RadialWheel_canceled;
     }
 
     private void Mark_performed(InputAction.CallbackContext obj)
@@ -67,6 +82,16 @@ public class InputManager : MonoBehaviour
     private void PreviouseCharacter_performed(InputAction.CallbackContext obj)
     {
         inputTracker.OnPreviousCharacterPressed?.Invoke();
+    }
+
+    private void RadialWheel_performed(InputAction.CallbackContext obj)
+    {
+        inputTracker.OnRadialWheelPressed?.Invoke();
+    }
+
+    private void RadialWheel_canceled(InputAction.CallbackContext obj)
+    {
+        inputTracker.OnRadialWheelCanceled?.Invoke();
     }
 
     private void Update()
