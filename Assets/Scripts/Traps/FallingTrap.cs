@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,13 +17,14 @@ public class FallingTrap : MonoBehaviour
     /// <value>Defaults to Vector2(1, 1)</value>
     public Vector2 TriggerDimensions { get; private set; } = new Vector2(1.0f, 1.0f);
 
-    private BoxCollider2D _faiilinTrapCollider;
+    [SerializeField, Tooltip("Reference to the trigger size of the trap")]
+    private BoxCollider2D _fallingTrapCollider;
 
-    private void Start()
-    {
-        _faiilinTrapCollider = Ceiling.GetComponent<BoxCollider2D>();
-    }
+    [field: SerializeField, Tooltip("The damage the trap cause to the target")]
+    public float TrapDamage { get; private set; }
 
+
+    public event Action OnTrapSet;
 
 
     /// <summary>
@@ -32,8 +34,8 @@ public class FallingTrap : MonoBehaviour
     /// <param name="width">The trigger width (defaults = 1)</param>
     public void ChaneTriggerParameters(float height = 1.0f, float width = 1.0f)
     {
-        // Get the component to change its values in the editor
-        _faiilinTrapCollider = Ceiling.GetComponent<BoxCollider2D>();
+        // // Get the component to change its values in the editor
+        // _fallingTrapCollider = GetComponent<BoxCollider2D>();
 
 
         // yOffset calculation
@@ -41,10 +43,14 @@ public class FallingTrap : MonoBehaviour
         // Multiply by -1 to increase the height downward insteat of upward
         float yOffset = height / 2 * -1;
 
-        _faiilinTrapCollider.size = new Vector2(width, height);
-        _faiilinTrapCollider.offset = new Vector2(0.0f, yOffset);
+        if (_fallingTrapCollider != null)
+        {
+            _fallingTrapCollider.size = new Vector2(width, height);
+            _fallingTrapCollider.offset = new Vector2(0.0f, yOffset);
+        }
     }
 
+    // Inspector GUI
     //---------------------------------------------------------------------------------------------
     public void OnValidate()
     {
@@ -54,14 +60,13 @@ public class FallingTrap : MonoBehaviour
     public void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(_faiilinTrapCollider.offset, _faiilinTrapCollider.size);
+        Gizmos.DrawWireCube(_fallingTrapCollider.offset, _fallingTrapCollider.size);
     }
 
     //---------------------------------------------------------------------------------------------
-
-
     public void OnTriggerEnter2D()
     {
-        Debug.Log("Something entered the traaap!");
+        Debug.Log("Ooooh, it's a trap!!");
+        OnTrapSet?.Invoke();
     }
 }

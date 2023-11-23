@@ -39,8 +39,8 @@ public class PlayerAttack : MonoBehaviour, IAttack
         // flip the sprite to the cursor direction when the player is attacking
         _playerController.FlipTheSprite((attackDirection.x < 0) ? true : false);
 
-        // play the animation
-        // play the sound
+        // TODO: play the animation
+        // TODO: play the sound
 
         RaycastHit2D hit = Physics2D.CapsuleCast(transform.position, AttackRadius, CapsuleDirection2D.Horizontal, 0.0f, 
             attackDirection, AttackDistance, _attackMask);
