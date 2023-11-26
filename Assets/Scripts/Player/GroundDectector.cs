@@ -10,6 +10,6 @@ public class GroundDectector : MonoBehaviour
     {
         // Reset the jump counter
         samirControllerScript.CurrentJumpCounter = 0;
-        Debug.Log("OnTriggerEnter2D: " + samirControllerScript.CurrentJumpCounter);
+        // Debug.Log("OnTriggerEnter2D: " + samirControllerScript.CurrentJumpCounter);
     }
 }
